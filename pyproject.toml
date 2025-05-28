@@ -9,4 +9,6 @@ dependencies = [
 ]
 
 [tool.crewai]
-type = "tool"
+name = "benchmark_status_checker"
+version = "0.1.0"
+description = "Fetches the current status and final results of a benchmark test by kickoff ID."
