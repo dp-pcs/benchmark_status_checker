@@ -1,5 +1,12 @@
 from crewai.tools import BaseTool
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+CREW_API_URL = os.getenv("CREW_API_URL")
+CREW_BEARER_TOKEN = os.getenv("CREW_BEARER_TOKEN")
 
 class BenchmarkStatusChecker(BaseTool):
     name: str = "BenchmarkStatusChecker"
@@ -7,9 +14,9 @@ class BenchmarkStatusChecker(BaseTool):
 
     def _run(self, kickoff_id: str) -> str:
         try:
-            url = f"https://evaluating-agentic-frameworks-for-crew-auto-8a97fceb.crewai.com/status/{kickoff_id}"
+            url = f"{CREW_API_URL}/status/{kickoff_id}"
             headers = {
-                "Authorization": "Bearer f754b06c7dd4"
+                "Authorization": f"Bearer {CREW_BEARER_TOKEN}"
             }
 
             response = requests.get(url, headers=headers, timeout=60)
